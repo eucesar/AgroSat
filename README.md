@@ -62,7 +62,7 @@ Se isso funcionar, o projeto está ok.
 | Samuel Aguiar | 550212 | Sistemas de Informação |
 
 **Turma:** 4SIOA  
-**Instituição:** FIAP — Pós-graduação
+**Instituição:** FIAP — Graduação (Sistemas de Informação / FIAP ON)
 
 ---
 
