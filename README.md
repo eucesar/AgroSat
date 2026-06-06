@@ -9,6 +9,51 @@
 
 ---
 
+## Como rodar
+
+Baixe ou clone o repositório e siga estes passos — **funciona normal** para qualquer pessoa com internet.
+
+### Passo a passo
+
+1. Baixe o projeto ou clone:
+   ```bash
+   git clone https://github.com/eucesar/AgroSat.git
+   cd AgroSat
+   ```
+2. Abra a pasta no **VS Code** e instale a extensão **Live Server**.
+3. Clique com botão direito em `index.html` → **Open with Live Server**.
+4. Acesse `http://127.0.0.1:5500` no navegador.
+
+> **Importante:** não abra o HTML com duplo clique (`file://`). Os módulos JavaScript (`import/export`) exigem um **servidor HTTP local**.
+
+**Alternativa sem Live Server:**
+```bash
+npx serve .
+```
+
+### O que já vem pronto
+
+- Firebase configurado (projeto `agrosat-gs`)
+- Login e cadastro por e-mail/senha
+- Dados de satélite **simulados** ao cadastrar uma fazenda
+- Todas as telas: landing → fazendas → dashboard → gráficos → histórico
+
+**Não precisa** instalar Node, npm ou banco de dados local — só servidor HTTP + internet (Firebase e CDNs).
+
+### Firebase (obrigatório para gravar dados)
+
+As regras do Firestore precisam estar publicadas no [Console Firebase](https://console.firebase.google.com) → projeto `agrosat-gs` → **Firestore → Regras** → colar o conteúdo de `firestore.rules` → **Publicar**.
+
+### Teste rápido
+
+1. Criar conta na landing  
+2. Cadastrar uma fazenda  
+3. Abrir o dashboard e ver KPIs + gráficos  
+
+Se isso funcionar, o projeto está ok.
+
+---
+
 ## Integrantes
 
 | Nome | RM | Curso |
@@ -212,27 +257,7 @@ match /users/{userId} {
 
 ## Como executar
 
-### Pré-requisitos
-
-- [Node.js](https://nodejs.org/) *(opcional — só se quiser usar `npx serve`)*
-- [Visual Studio Code](https://code.visualstudio.com/)
-- Extensão **Live Server** *(recomendado)*
-
-### Passo a passo
-
-1. Clone ou baixe este repositório.
-2. Abra a pasta `AgroSat` no VS Code.
-3. Clique com botão direito em `index.html` → **Open with Live Server**.
-4. Acesse `http://127.0.0.1:5500` no navegador.
-
-> **Importante:** não abra o HTML diretamente no navegador (`file://`). Os módulos ES (`import/export`) exigem um servidor HTTP local.
-
-### Alternativa sem Live Server
-
-```bash
-# Na pasta AgroSat
-npx serve .
-```
+Instruções completas no início deste README → [Como rodar](#como-rodar).
 
 ---
 
