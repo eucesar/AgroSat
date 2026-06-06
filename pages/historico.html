@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Histórico — AgroSat</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+  <link href="../css/interno.css" rel="stylesheet">
+</head>
+<body class="app-interno">
+
+  <div id="navbar-interna"></div>
+
+  <div class="container pagina-conteudo">
+    <div class="pagina-header-interno anim-interno">
+      <span class="pagina-badge"><i class="bi bi-clock-history"></i> Rastreabilidade</span>
+      <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+        <div>
+          <h1 class="pagina-titulo"><i class="bi bi-clock-history"></i> Histórico</h1>
+          <p class="text-muted mb-0">Registro completo de leituras e alertas da safra</p>
+        </div>
+        <div class="header-acoes">
+        <button class="btn btn-outline-secondary btn-sm" id="btn-limpar-filtro">
+          <i class="bi bi-x-circle"></i> Limpar filtros
+        </button>
+        <button class="btn btn-teal" id="btn-exportar">
+          <i class="bi bi-download"></i> Exportar CSV
+        </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="seletor-fazenda-box anim-interno anim-delay-1" id="seletor-fazenda"></div>
+
+    <div id="sem-dados" class="d-none">
+      <div class="empty-state-v2 anim-interno">
+        <i class="bi bi-table"></i>
+        <h5>Sem dados no histórico</h5>
+        <p class="text-muted">Cadastre uma fazenda para ver o histórico de leituras.</p>
+        <a href="fazenda.html" class="btn btn-teal mt-2">Cadastrar fazenda</a>
+      </div>
+    </div>
+
+    <div id="historico-conteudo" class="d-none">
+
+      <!-- Resumo da safra -->
+      <div class="row g-3 mb-4 anim-interno anim-delay-2" id="resumo-safra">
+        <div class="col-6 col-md-3">
+          <div class="resumo-card resumo-teal">
+            <i class="bi bi-journal-text"></i>
+            <span class="resumo-valor" id="res-total">—</span>
+            <span class="resumo-label">Total de leituras</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="resumo-card resumo-verde">
+            <i class="bi bi-check2-circle"></i>
+            <span class="resumo-valor" id="res-saudaveis">—</span>
+            <span class="resumo-label">Dias saudáveis</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="resumo-card resumo-laranja">
+            <i class="bi bi-exclamation-triangle"></i>
+            <span class="resumo-valor" id="res-atencao">—</span>
+            <span class="resumo-label">Dias de atenção</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="resumo-card resumo-vermelho">
+            <i class="bi bi-bell"></i>
+            <span class="resumo-valor" id="res-alertas">—</span>
+            <span class="resumo-label">Alertas emitidos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4 anim-interno anim-delay-3">
+        <!-- Distribuição de status -->
+        <div class="col-md-4">
+          <div class="painel-interno h-100">
+            <h5 class="painel-titulo"><i class="bi bi-pie-chart"></i> Saúde da safra</h5>
+            <canvas id="chartStatus" height="200"></canvas>
+            <div class="legenda-status mt-3" id="legenda-status"></div>
+          </div>
+        </div>
+
+        <!-- Médias do período -->
+        <div class="col-md-8">
+          <div class="painel-interno h-100">
+            <h5 class="painel-titulo"><i class="bi bi-calculator"></i> Médias do período</h5>
+            <div class="row g-3" id="medias-periodo">
+              <div class="col-6 col-md-3">
+                <div class="media-box">
+                  <span class="media-label">NDVI médio</span>
+                  <span class="media-valor" id="media-ndvi">—</span>
+                  <div class="media-bar"><div class="media-bar-fill media-bar-ndvi" id="bar-media-ndvi"></div></div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="media-box">
+                  <span class="media-label">Umidade média</span>
+                  <span class="media-valor" id="media-umidade">—</span>
+                  <div class="media-bar"><div class="media-bar-fill media-bar-umidade" id="bar-media-umidade"></div></div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="media-box">
+                  <span class="media-label">Temp. média</span>
+                  <span class="media-valor" id="media-temp">—</span>
+                  <div class="media-bar"><div class="media-bar-fill media-bar-temp" id="bar-media-temp"></div></div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="media-box">
+                  <span class="media-label">Chuva total</span>
+                  <span class="media-valor" id="media-chuva">—</span>
+                  <div class="media-bar"><div class="media-bar-fill media-bar-chuva" id="bar-media-chuva"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="periodo-info mt-3">
+              <i class="bi bi-calendar-range"></i>
+              Período: <strong id="periodo-inicio">—</strong> até <strong id="periodo-fim">—</strong>
+              · Cultura: <strong id="periodo-cultura">—</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtros -->
+      <div class="painel-interno mb-4 anim-interno anim-delay-4">
+        <h5 class="painel-titulo mb-3"><i class="bi bi-funnel"></i> Filtros</h5>
+        <div class="row g-3">
+          <div class="col-md-3">
+            <label class="form-label fw-semibold">Data específica</label>
+            <input type="date" class="form-control" id="filtro-data">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label fw-semibold">Status do dia</label>
+            <select class="form-select" id="filtro-status">
+              <option value="todos">Todos</option>
+              <option value="saudavel">Saudável</option>
+              <option value="atencao">Atenção</option>
+              <option value="critico">Crítico</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label fw-semibold">Tipo de registro</label>
+            <select class="form-select" id="filtro-tipo">
+              <option value="todos">Todos</option>
+              <option value="leituras">Leituras</option>
+              <option value="alertas">Alertas</option>
+            </select>
+          </div>
+          <div class="col-md-3 d-flex align-items-end">
+            <p class="text-muted mb-2 small" id="contador-registros">— registros encontrados</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabela de leituras -->
+      <div id="secao-leituras" class="painel-interno mb-4 anim-interno anim-delay-5">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+          <h5 class="painel-titulo mb-0"><i class="bi bi-table"></i> Leituras diárias</h5>
+          <span class="badge bg-secondary" id="badge-leituras">0 registros</span>
+        </div>
+        <div class="table-responsive">
+          <table class="table tabela-enriquecida">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th><i class="bi bi-flower1"></i> NDVI</th>
+                <th><i class="bi bi-droplet"></i> Umidade</th>
+                <th><i class="bi bi-thermometer-half"></i> Temp.</th>
+                <th><i class="bi bi-cloud-rain"></i> Chuva</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-leituras"></tbody>
+          </table>
+        </div>
+        <nav class="mt-3" id="paginacao"></nav>
+      </div>
+
+      <!-- Timeline de alertas -->
+      <div id="secao-alertas" class="painel-interno anim-interno anim-delay-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="painel-titulo mb-0"><i class="bi bi-bell"></i> Linha do tempo de alertas</h5>
+          <span class="badge bg-warning text-dark" id="badge-alertas-hist">0 alertas</span>
+        </div>
+        <div class="timeline-alerta" id="timeline-alertas">
+          <p class="text-muted">Nenhum alerta registrado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-interno container">
+    <p><i class="bi bi-globe-americas"></i> AgroSat — Global Solution FIAP · Space Connect 2026</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script type="module" src="../js/pages/historico.js"></script>
+</body>
+</html>

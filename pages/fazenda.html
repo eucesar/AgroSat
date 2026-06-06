@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Fazenda — AgroSat</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+  <link href="../css/interno.css" rel="stylesheet">
+</head>
+<body class="app-interno">
+
+  <div id="navbar-interna"></div>
+
+  <div class="container pagina-conteudo">
+    <div class="pagina-header-interno anim-interno">
+      <span class="pagina-badge"><i class="bi bi-geo-alt"></i> Minhas propriedades</span>
+      <h1 class="pagina-titulo"><i class="bi bi-geo-alt"></i> Cadastrar Fazenda</h1>
+      <p class="text-muted mb-0">Cadastre suas propriedades para monitoramento. Plano free: até 2 fazendas.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="card card-formulario mb-4 anim-interno anim-delay-1">
+          <h5 class="mb-3 painel-titulo" id="form-titulo"><i class="bi bi-plus-circle"></i> Nova fazenda</h5>
+          <form id="formFazenda" novalidate>
+            <input type="hidden" id="fazendaId">
+            <div class="mb-3">
+              <label class="form-label"><i class="bi bi-house"></i> Nome da fazenda</label>
+              <input type="text" class="form-control" id="nome" required placeholder="Ex: Fazenda Boa Esperança">
+              <div class="invalid-feedback">Informe o nome da fazenda.</div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label"><i class="bi bi-flower1"></i> Cultura principal</label>
+                <select class="form-select" id="cultura" required>
+                  <option value="">Selecione...</option>
+                  <option value="soja">Soja</option>
+                  <option value="milho">Milho</option>
+                  <option value="cafe">Café</option>
+                  <option value="cana">Cana-de-açúcar</option>
+                  <option value="hortalicas">Hortaliças</option>
+                  <option value="outro">Outro</option>
+                </select>
+                <div class="invalid-feedback">Selecione a cultura.</div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label"><i class="bi bi-rulers"></i> Área (hectares)</label>
+                <input type="number" class="form-control" id="areaHectares" required min="0.1" step="0.1" placeholder="Ex: 50">
+                <div class="invalid-feedback">Informe a área.</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 mb-3">
+                <label class="form-label"><i class="bi bi-building"></i> Cidade</label>
+                <input type="text" class="form-control" id="cidade" required placeholder="Ex: Ribeirão Preto">
+                <div class="invalid-feedback">Informe a cidade.</div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label class="form-label"><i class="bi bi-map"></i> Estado (UF)</label>
+                <select class="form-select" id="estado" required>
+                  <option value="">UF</option>
+                  <option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option>
+                  <option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option>
+                  <option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option>
+                  <option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option>
+                  <option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option>
+                  <option value="PR">PR</option><option value="PE">PE</option><option value="PI">PI</option>
+                  <option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option>
+                  <option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option>
+                  <option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option>
+                </select>
+                <div class="invalid-feedback">Selecione o estado.</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label"><i class="bi bi-compass"></i> Latitude</label>
+                <input type="number" class="form-control" id="latitude" step="any" placeholder="Ex: -21.1775">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label"><i class="bi bi-compass"></i> Longitude</label>
+                <input type="number" class="form-control" id="longitude" step="any" placeholder="Ex: -47.8103">
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <button type="submit" class="btn btn-teal" id="btnSalvar">
+                <i class="bi bi-check-lg"></i> Salvar fazenda
+              </button>
+              <button type="button" class="btn btn-outline-secondary d-none" id="btnCancelar">Cancelar edição</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="dica-card anim-interno anim-delay-2">
+          <h5><i class="bi bi-lightbulb"></i> Como funciona</h5>
+          <div class="dica-item"><i class="bi bi-check-circle-fill"></i><span>Ao salvar, o sistema gera <strong>30 dias</strong> de leituras simuladas de satélite.</span></div>
+          <div class="dica-item"><i class="bi bi-check-circle-fill"></i><span>Indicadores: NDVI, umidade, temperatura e precipitação.</span></div>
+          <div class="dica-item"><i class="bi bi-check-circle-fill"></i><span>Alertas automáticos de seca, chuva e estresse da lavoura.</span></div>
+          <div class="dica-item"><i class="bi bi-check-circle-fill"></i><span>Dados ficam salvos no Firebase e sincronizam offline.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="anim-interno anim-delay-3">
+      <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
+        <h4 class="mb-0 painel-titulo"><i class="bi bi-list-ul"></i> Suas fazendas</h4>
+        <span class="badge bg-teal-soft" id="contador-fazendas">0 cadastradas</span>
+      </div>
+      <div id="lista-fazendas" class="row g-3">
+        <p class="text-muted" id="sem-fazendas">Nenhuma fazenda cadastrada ainda.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-interno container">
+    <p><i class="bi bi-globe-americas"></i> AgroSat — Global Solution FIAP · Space Connect 2026</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="../js/pages/fazenda.js"></script>
+</body>
+</html>

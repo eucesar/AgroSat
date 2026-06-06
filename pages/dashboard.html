@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — AgroSat</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+  <link href="../css/interno.css" rel="stylesheet">
+</head>
+<body class="app-interno">
+
+  <div id="navbar-interna"></div>
+
+  <div class="container pagina-conteudo">
+    <div class="pagina-header-interno mb-4 anim-interno">
+      <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+        <div>
+          <span class="pagina-badge"><i class="bi bi-speedometer2"></i> Monitoramento</span>
+          <h1 class="pagina-titulo"><i class="bi bi-speedometer2"></i> Dashboard</h1>
+          <p class="text-muted mb-0">Central de monitoramento da sua lavoura em tempo real</p>
+        </div>
+        <div class="header-acoes">
+          <a href="graficos.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-graph-up"></i> Gráficos</a>
+          <a href="historico.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-clock-history"></i> Histórico</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="seletor-fazenda-box anim-interno anim-delay-1" id="seletor-fazenda"></div>
+
+    <div id="sem-dados" class="d-none">
+      <div class="empty-state-v2 anim-interno">
+        <i class="bi bi-geo-alt"></i>
+        <h5>Nenhuma fazenda cadastrada</h5>
+        <p class="text-muted">Cadastre sua propriedade para começar o monitoramento via satélite.</p>
+        <a href="fazenda.html" class="btn btn-teal mt-2"><i class="bi bi-plus-lg"></i> Cadastrar fazenda</a>
+      </div>
+    </div>
+
+    <div id="dashboard-conteudo" class="d-none">
+
+      <!-- Banner da fazenda -->
+      <div class="fazenda-banner mb-4 anim-interno anim-delay-2" id="fazenda-banner">
+        <div class="fazenda-banner-bg"></div>
+        <div class="fazenda-banner-conteudo">
+          <div class="fazenda-banner-icone"><i class="bi bi-geo-alt-fill"></i></div>
+          <div>
+            <h4 id="banner-nome">—</h4>
+            <p id="banner-info">—</p>
+          </div>
+          <div class="fazenda-banner-status" id="banner-status">
+            <i class="bi bi-circle-fill"></i> Monitorando
+          </div>
+        </div>
+        <div class="fazenda-banner-meta">
+          <span><i class="bi bi-calendar3"></i> Última leitura: <strong id="banner-data">—</strong></span>
+          <span><i class="bi bi-rulers"></i> <strong id="banner-area">—</strong> ha</span>
+          <span><i class="bi bi-pin-map"></i> <strong id="banner-local">—</strong></span>
+        </div>
+      </div>
+
+      <!-- Mini stats -->
+      <div class="row g-3 mb-4 anim-interno anim-delay-3" id="mini-stats">
+        <div class="col-6 col-md-3">
+          <div class="mini-stat mini-stat-teal">
+            <i class="bi bi-calendar-check"></i>
+            <div><span class="mini-stat-valor" id="stat-dias">—</span><span class="mini-stat-label">Dias monitorados</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="mini-stat mini-stat-verde">
+            <i class="bi bi-check-circle"></i>
+            <div><span class="mini-stat-valor" id="stat-saudaveis">—</span><span class="mini-stat-label">Dias saudáveis</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="mini-stat mini-stat-laranja">
+            <i class="bi bi-bell"></i>
+            <div><span class="mini-stat-valor" id="stat-alertas">—</span><span class="mini-stat-label">Alertas ativos</span></div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="mini-stat mini-stat-azul">
+            <i class="bi bi-flower1"></i>
+            <div><span class="mini-stat-valor" id="stat-ndvi-medio">—</span><span class="mini-stat-label">NDVI médio (30d)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="row g-3 mb-4 anim-interno anim-delay-4">
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="kpi-card kpi-enriquecido" id="kpi-ndvi">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="flex-grow-1">
+                <div class="kpi-label">NDVI</div>
+                <div class="kpi-valor" id="val-ndvi">—</div>
+                <span class="kpi-trend" id="trend-ndvi"></span>
+                <span class="kpi-status" id="status-ndvi">—</span>
+                <div class="kpi-barra"><div class="kpi-barra-fill" id="barra-ndvi"></div></div>
+              </div>
+              <div class="kpi-icone"><i class="bi bi-flower1"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="kpi-card kpi-enriquecido" id="kpi-umidade">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="flex-grow-1">
+                <div class="kpi-label">Umidade do Solo</div>
+                <div class="kpi-valor" id="val-umidade">—</div>
+                <span class="kpi-trend" id="trend-umidade"></span>
+                <span class="kpi-status" id="status-umidade">—</span>
+                <div class="kpi-barra"><div class="kpi-barra-fill" id="barra-umidade"></div></div>
+              </div>
+              <div class="kpi-icone"><i class="bi bi-droplet"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="kpi-card kpi-enriquecido" id="kpi-temperatura">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="flex-grow-1">
+                <div class="kpi-label">Temperatura</div>
+                <div class="kpi-valor" id="val-temperatura">—</div>
+                <span class="kpi-trend" id="trend-temperatura"></span>
+                <span class="kpi-status" id="status-temperatura">—</span>
+                <div class="kpi-barra"><div class="kpi-barra-fill" id="barra-temperatura"></div></div>
+              </div>
+              <div class="kpi-icone"><i class="bi bi-thermometer-half"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="kpi-card kpi-enriquecido" id="kpi-precipitacao">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="flex-grow-1">
+                <div class="kpi-label">Precipitação</div>
+                <div class="kpi-valor" id="val-precipitacao">—</div>
+                <span class="kpi-trend" id="trend-precipitacao"></span>
+                <span class="kpi-status" id="status-precipitacao">—</span>
+                <div class="kpi-barra"><div class="kpi-barra-fill" id="barra-precipitacao"></div></div>
+              </div>
+              <div class="kpi-icone"><i class="bi bi-cloud-rain"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumo -->
+      <div class="resumo-box mb-4 anim-interno anim-delay-5">
+        <div class="resumo-icone"><i class="bi bi-lightbulb"></i></div>
+        <div>
+          <h6>Análise automática</h6>
+          <p id="resumo-texto">Carregando análise...</p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Alertas -->
+        <div class="col-lg-5 anim-interno anim-delay-5">
+          <div class="painel-interno">
+            <div class="painel-header">
+              <h5><i class="bi bi-bell"></i> Alertas Automáticos</h5>
+              <span class="badge-contador" id="badge-alertas">0</span>
+            </div>
+            <div id="lista-alertas">
+              <p class="text-muted">Nenhum alerta ativo.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráficos mini -->
+        <div class="col-lg-7 anim-interno anim-delay-5">
+          <div class="painel-interno">
+            <div class="painel-header">
+              <h5><i class="bi bi-graph-up"></i> Tendência (7 dias)</h5>
+            </div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <p class="chart-subtitulo">NDVI — vigor da lavoura</p>
+                <canvas id="chartNdvi" height="160"></canvas>
+              </div>
+              <div class="col-md-6">
+                <p class="chart-subtitulo">Umidade do solo (%)</p>
+                <canvas id="chartUmidade" height="160"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-interno container">
+    <p><i class="bi bi-globe-americas"></i> AgroSat — Global Solution FIAP · Space Connect 2026</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script type="module" src="../js/pages/dashboard.js"></script>
+</body>
+</html>

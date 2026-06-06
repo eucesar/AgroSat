@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroSat — Monitoramento Agrícola via Satélite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-landing fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="bi bi-globe-americas"></i> AgroSat</a>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#modalLogin">Entrar</button>
+        <button class="btn btn-teal btn-sm" data-bs-toggle="modal" data-bs-target="#modalCadastro">Cadastrar</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-orbs" aria-hidden="true">
+      <span class="orb orb-1"></span>
+      <span class="orb orb-2"></span>
+      <span class="orb orb-3"></span>
+    </div>
+    <div class="container position-relative">
+      <div class="row align-items-center">
+        <div class="col-lg-6 hero-texto animate-on-scroll">
+          <span class="badge-hero"><i class="bi bi-stars"></i> Space Connect 2026</span>
+          <h1>Monitoramento agrícola via satélite para pequenos e médios produtores</h1>
+          <p class="lead">Dados de NDVI, umidade, temperatura e precipitação traduzidos em alertas simples — para você decidir na hora certa, sem depender de consultoria cara.</p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <button class="btn btn-teal btn-lg btn-glow" data-bs-toggle="modal" data-bs-target="#modalCadastro">
+              <i class="bi bi-rocket-takeoff"></i> Começar agora
+            </button>
+            <a href="#problema" class="btn btn-outline-light btn-lg btn-hero-outline">Conheça a solução</a>
+          </div>
+          <div class="hero-stats mt-4">
+            <div><strong>4</strong><span>indicadores</span></div>
+            <div><strong>24/7</strong><span>monitoramento</span></div>
+            <div><strong>100%</strong><span>online/offline</span></div>
+          </div>
+        </div>
+        <div class="col-lg-6 mt-4 mt-lg-0 text-center animate-on-scroll delay-2">
+          <div class="hero-visual">
+            <div class="hero-satelite float-animation">
+              <i class="bi bi-broadcast"></i>
+            </div>
+            <div class="hero-ondas" aria-hidden="true"></div>
+            <div class="hero-card-float card-float-1">
+              <i class="bi bi-flower1 text-success"></i> NDVI 0,72
+            </div>
+            <div class="hero-card-float card-float-2">
+              <i class="bi bi-droplet text-info"></i> Umidade 45%
+            </div>
+            <div class="hero-card-float card-float-3">
+              <i class="bi bi-bell text-warning"></i> Alerta de seca
+            </div>
+            <p class="hero-visual-legenda">Dados orbitais a serviço da produtividade no campo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O Problema -->
+  <section class="secao secao-problema" id="problema">
+    <div class="secao-bg-pattern" aria-hidden="true"></div>
+    <div class="container position-relative">
+      <div class="secao-header animate-on-scroll">
+        <span class="secao-badge secao-badge-alerta"><i class="bi bi-exclamation-triangle"></i> O Problema</span>
+        <h2 class="secao-titulo text-center">Pequenos produtores ficam de fora</h2>
+        <p class="secao-subtitulo text-center">A agricultura de precisão ainda é cara, complexa e distante do produtor familiar</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4 animate-on-scroll delay-1">
+          <div class="card card-problema card-problema-1">
+            <div class="card-problema-top"></div>
+            <div class="icone-wrap icone-wrap-teal"><i class="bi bi-people"></i></div>
+            <div class="numero" data-contador="77" data-sufixo="%">0%</div>
+            <p>das propriedades rurais no Brasil são de <strong>agricultura familiar</strong></p>
+            <p class="fonte-dado"><i class="bi bi-journal-text"></i> Fonte: IBGE, Censo Agropecuário</p>
+          </div>
+        </div>
+        <div class="col-md-4 animate-on-scroll delay-2">
+          <div class="card card-problema card-problema-2">
+            <div class="card-problema-top"></div>
+            <div class="icone-wrap icone-wrap-laranja"><i class="bi bi-person-x"></i></div>
+            <div class="numero" data-contador="20" data-prefixo="&lt;" data-sufixo="%">0%</div>
+            <p>contam com <strong>assistência técnica</strong> regular na propriedade</p>
+            <p class="fonte-dado"><i class="bi bi-journal-text"></i> Fonte: Embrapa / SEBRAE</p>
+          </div>
+        </div>
+        <div class="col-md-4 animate-on-scroll delay-3">
+          <div class="card card-problema card-problema-3">
+            <div class="card-problema-top"></div>
+            <div class="icone-wrap icone-wrap-vermelho"><i class="bi bi-currency-dollar"></i></div>
+            <div class="numero" data-contador="47" data-sufixo="%">0%</div>
+            <p>apontam <strong>custo e complexidade</strong> como barreira para adotar tecnologia</p>
+            <p class="fonte-dado"><i class="bi bi-journal-text"></i> Fonte: Embrapa / SEBRAE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A Solução -->
+  <section class="secao secao-solucao" id="solucao">
+    <div class="container">
+      <div class="secao-header animate-on-scroll">
+        <span class="secao-badge secao-badge-teal"><i class="bi bi-lightning-charge"></i> A Solução</span>
+        <h2 class="secao-titulo text-center">AgroSat — tecnologia espacial acessível</h2>
+        <p class="secao-subtitulo text-center">Traduzimos dados de satélite em decisões simples para o produtor rural</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3 animate-on-scroll delay-1">
+          <div class="card card-solucao solucao-1">
+            <div class="solucao-icone"><i class="bi bi-globe-americas"></i></div>
+            <div class="numero-passo">01</div>
+            <h5>Dados de satélite</h5>
+            <p>Índices orbitais validados agronomicamente, prontos para integração com NASA e INPE.</p>
+            <span class="solucao-tag">Space Connect</span>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 animate-on-scroll delay-2">
+          <div class="card card-solucao solucao-2">
+            <div class="solucao-icone"><i class="bi bi-bar-chart-line"></i></div>
+            <div class="numero-passo">02</div>
+            <h5>Indicadores completos</h5>
+            <p>NDVI, umidade, temperatura, precipitação e alertas automáticos de seca e estresse.</p>
+            <span class="solucao-tag">4 KPIs</span>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 animate-on-scroll delay-3">
+          <div class="card card-solucao solucao-3">
+            <div class="solucao-icone"><i class="bi bi-phone"></i></div>
+            <div class="numero-passo">03</div>
+            <h5>Interface simples</h5>
+            <p>Dashboard intuitivo que traduz dados técnicos em informações que o produtor entende.</p>
+            <span class="solucao-tag">Fácil de usar</span>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 animate-on-scroll delay-4">
+          <div class="card card-solucao solucao-4">
+            <div class="solucao-icone"><i class="bi bi-wifi-off"></i></div>
+            <div class="numero-passo">04</div>
+            <h5>Funciona offline</h5>
+            <p>Cache local no navegador — ideal para áreas com sinal precário no campo.</p>
+            <span class="solucao-tag">Sem internet</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como Funciona -->
+  <section class="secao secao-passos" id="como-funciona">
+    <div class="container">
+      <div class="secao-header animate-on-scroll">
+        <span class="secao-badge secao-badge-verde"><i class="bi bi-signpost-split"></i> Passo a passo</span>
+        <h2 class="secao-titulo text-center">Como funciona</h2>
+        <p class="secao-subtitulo text-center">Três passos para monitorar sua lavoura e tomar decisões na hora certa</p>
+      </div>
+      <div class="passos-linha" aria-hidden="true"></div>
+      <div class="row g-4 passos-row">
+        <div class="col-md-4 animate-on-scroll delay-1">
+          <div class="passo passo-card">
+            <div class="passo-numero">1</div>
+            <div class="icone-passo pulse-icon"><i class="bi bi-geo-alt"></i></div>
+            <h5>Cadastre sua fazenda</h5>
+            <p>Informe cultura, área em hectares e localização da propriedade.</p>
+          </div>
+        </div>
+        <div class="col-md-4 animate-on-scroll delay-2">
+          <div class="passo passo-card">
+            <div class="passo-numero">2</div>
+            <div class="icone-passo pulse-icon"><i class="bi bi-speedometer2"></i></div>
+            <h5>Veja os indicadores</h5>
+            <p>Acompanhe NDVI, umidade e temperatura no dashboard em tempo real.</p>
+          </div>
+        </div>
+        <div class="col-md-4 animate-on-scroll delay-3">
+          <div class="passo passo-card">
+            <div class="passo-numero">3</div>
+            <div class="icone-passo pulse-icon"><i class="bi bi-bell"></i></div>
+            <h5>Receba alertas</h5>
+            <p>Alertas automáticos de seca, chuva e estresse — decida na hora certa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="secao secao-cta animate-on-scroll">
+    <div class="container text-center">
+      <h2>Pronto para monitorar sua lavoura?</h2>
+      <p>Cadastre-se grátis e comece a acompanhar seus indicadores hoje mesmo.</p>
+      <button class="btn btn-teal btn-lg btn-glow mt-2" data-bs-toggle="modal" data-bs-target="#modalCadastro">
+        <i class="bi bi-person-plus"></i> Criar conta gratuita
+      </button>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="rodape">
+    <div class="rodape-wave" aria-hidden="true"></div>
+    <div class="container position-relative">
+      <div class="row">
+        <div class="col-md-4 mb-3 animate-on-scroll">
+          <h5><i class="bi bi-globe-americas"></i> AgroSat</h5>
+          <p>Democratizando o acesso a dados agrícolas de satélite para pequenos e médios produtores.</p>
+          <div class="rodape-redes">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3 animate-on-scroll delay-1">
+          <h5>Contato</h5>
+          <p><i class="bi bi-telephone"></i> (11) 99999-0000</p>
+          <p><i class="bi bi-envelope"></i> contato@agrosat.com.br</p>
+          <p><i class="bi bi-globe"></i> www.agrosat.com.br</p>
+        </div>
+        <div class="col-md-4 mb-3 animate-on-scroll delay-2">
+          <h5>Equipe</h5>
+          <p>Cesar Iglesias (RM 98007) · Samuel Aguiar (RM 550212)</p>
+          <p class="fonte-dado rodape-tag">Turma 4SIOA — Sistemas de Informação</p>
+          <p class="fonte-dado rodape-tag">Global Solution — FIAP · Space Connect 2026</p>
+        </div>
+      </div>
+      <hr class="border-secondary">
+      <p class="text-center mb-0 opacity-50">&copy; 2026 AgroSat. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Modal Login -->
+  <div class="modal fade" id="modalLogin" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-agrosat">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold">Entrar na AgroSat</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="login-erro" class="alert alert-danger d-none"></div>
+          <form id="formLogin">
+            <div class="mb-3">
+              <label class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="loginEmail" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Senha</label>
+              <input type="password" class="form-control" id="loginSenha" required>
+            </div>
+            <button type="submit" class="btn btn-teal w-100">Entrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Cadastro -->
+  <div class="modal fade" id="modalCadastro" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-agrosat">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold">Criar conta AgroSat</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="cadastro-erro" class="alert alert-danger d-none"></div>
+          <form id="formCadastro">
+            <div class="mb-3">
+              <label class="form-label">Nome completo</label>
+              <input type="text" class="form-control" id="cadastroNome" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="cadastroEmail" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Senha</label>
+              <input type="password" class="form-control" id="cadastroSenha" minlength="6" required>
+            </div>
+            <button type="submit" class="btn btn-teal w-100">Cadastrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/pages/landing.js"></script>
+  <script type="module" src="js/pages/landing-animacoes.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráficos — AgroSat</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+  <link href="../css/interno.css" rel="stylesheet">
+</head>
+<body class="app-interno">
+
+  <div id="navbar-interna"></div>
+
+  <div class="container pagina-conteudo">
+    <div class="pagina-header-interno anim-interno">
+      <span class="pagina-badge"><i class="bi bi-graph-up"></i> Análise temporal</span>
+      <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+        <div>
+          <h1 class="pagina-titulo"><i class="bi bi-graph-up"></i> Gráficos / Análise</h1>
+          <p class="text-muted mb-0">Aprofunde a análise dos indicadores ao longo do tempo</p>
+        </div>
+        <div class="header-acoes">
+          <a href="dashboard.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-speedometer2"></i> Dashboard</a>
+          <a href="historico.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-clock-history"></i> Histórico</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="seletor-fazenda-box anim-interno anim-delay-1" id="seletor-fazenda"></div>
+
+    <div id="sem-dados" class="d-none">
+      <div class="empty-state-v2 anim-interno">
+        <i class="bi bi-graph-up-arrow"></i>
+        <h5>Sem dados para gráficos</h5>
+        <p class="text-muted">Cadastre uma fazenda para visualizar a evolução dos indicadores.</p>
+        <a href="fazenda.html" class="btn btn-teal mt-2"><i class="bi bi-plus-lg"></i> Cadastrar fazenda</a>
+      </div>
+    </div>
+
+    <div id="graficos-conteudo" class="d-none">
+      <div class="painel-interno mb-4 anim-interno anim-delay-2">
+        <h5 class="painel-titulo mb-3"><i class="bi bi-sliders"></i> Filtros de análise</h5>
+        <div class="row g-3 align-items-end">
+          <div class="col-md-4">
+            <label class="form-label fw-semibold">Período</label>
+            <div class="btn-group w-100" role="group">
+              <button type="button" class="btn btn-outline-secondary btn-periodo active" data-dias="7">7 dias</button>
+              <button type="button" class="btn btn-outline-secondary btn-periodo" data-dias="30">30 dias</button>
+              <button type="button" class="btn btn-outline-secondary btn-periodo" data-dias="90">90 dias</button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-semibold">Indicador</label>
+            <select class="form-select" id="select-indicador">
+              <option value="todos">Todos os indicadores</option>
+              <option value="ndvi">NDVI</option>
+              <option value="umidade">Umidade do solo</option>
+              <option value="temperatura">Temperatura</option>
+              <option value="precipitacao">Precipitação</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-teal w-100" id="btn-atualizar">
+              <i class="bi bi-arrow-clockwise"></i> Atualizar gráfico
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-container-v2 mb-4 anim-interno anim-delay-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="painel-titulo mb-0"><i class="bi bi-bar-chart-line"></i> Evolução dos indicadores</h5>
+          <span class="badge bg-teal-soft" id="badge-periodo">7 dias</span>
+        </div>
+        <canvas id="chartPrincipal" height="100"></canvas>
+      </div>
+
+      <h5 class="painel-titulo mb-3 anim-interno"><i class="bi bi-calculator"></i> Estatísticas do período</h5>
+      <div class="row g-3 mb-4 anim-interno anim-delay-4" id="stats-container"></div>
+
+      <div class="legenda-box-v2 anim-interno anim-delay-5">
+        <h6 class="mb-3"><i class="bi bi-info-circle"></i> Faixas de referência agronômicas</h6>
+        <div class="row">
+          <div class="col-md-6">
+            <p><span class="faixa" style="background:#52B788"></span> <strong>NDVI saudável:</strong> 0,6 – 0,9</p>
+            <p><span class="faixa" style="background:#E9C46A"></span> <strong>NDVI moderado:</strong> 0,3 – 0,6</p>
+            <p><span class="faixa" style="background:#E76F51"></span> <strong>NDVI crítico:</strong> &lt; 0,3</p>
+          </div>
+          <div class="col-md-6">
+            <p><span class="faixa" style="background:#52B788"></span> <strong>Umidade adequada:</strong> &gt; 35%</p>
+            <p><span class="faixa" style="background:#E9C46A"></span> <strong>Umidade baixa:</strong> 20 – 35%</p>
+            <p><span class="faixa" style="background:#E76F51"></span> <strong>Risco de seca:</strong> &lt; 20%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-interno container">
+    <p><i class="bi bi-globe-americas"></i> AgroSat — Global Solution FIAP · Space Connect 2026</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script type="module" src="../js/pages/graficos.js"></script>
+</body>
+</html>
