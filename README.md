@@ -5,6 +5,20 @@
 **Global Solution — FIAP · Space Connect 2026**  
 **Turma 4SIOA — Sistemas de Informação**
 
+**Repositório:** [github.com/eucesar/AgroSat](https://github.com/eucesar/AgroSat)
+
+---
+
+## Integrantes
+
+| Nome | RM | Curso |
+|---|---|---|
+| Cesar Iglesias | 98007 | Sistemas de Informação |
+| Samuel Aguiar | 550212 | Sistemas de Informação |
+
+**Turma:** 4SIOA  
+**Instituição:** FIAP — Pós-graduação
+
 ---
 
 ## Sobre o projeto
@@ -270,13 +284,13 @@ Resumo da safra, gráfico de rosca com distribuição de status, tabela enriquec
 
 ## Equipe
 
+Projeto desenvolvido pelos integrantes da turma **4SIOA — Sistemas de Informação (FIAP)**:
+
 | Integrante | RM |
 |---|---|
 | Cesar Iglesias | 98007 |
 | Samuel Aguiar | 550212 |
 
-**Turma:** 4SIOA — Sistemas de Informação  
-**Instituição:** FIAP — Pós-graduação  
 **Projeto:** Global Solution · Space Connect 2026
 
 ---
